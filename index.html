@@ -2,7 +2,68 @@
 <html>
     <head>
         <script>
-            
+            score = 0;
+            function computerPlay(){
+                rand = Math.floor(Math.random() * Math.floor(3));
+                result = "rock"
+                switch(rand){
+                    case 0:
+                    result = "paper";
+                    break;
+                    case 1:
+                    result = "scissors"
+                    break;
+                }
+                return result;
+            }
+            function playRound(playerSelection, computerSelection) {
+	            player = playerSelection.toLowerCase();
+                comp = computerSelection;
+                if (player===comp){
+                    return "Draw! Both players chose " + player + ".";
+                }
+                if (player==="rock" && comp==="scissors"){
+                    score++;
+                    return "You win! Rock beats scissors.";
+                }
+                if (player==="rock" && comp==="paper"){
+                    score--;
+                    return "You lose! Paper beats rock.";
+                }
+                if (player==="scissors" && comp==="paper"){
+                    score++;
+                    return "You win! Scissor beats paper.";
+                }
+                if (player==="scissors" && comp==="rock"){
+                    score--;
+                    return "You lose! Rock beats scissor.";
+                }
+                if (player==="paper" && comp==="rock"){
+                    score++;
+                    return "You win! Paper beats rock.";
+                }
+                if (player==="paper" && comp==="scissors"){
+                    score--;
+                    return "You lose! Scissors beats paper.";
+                }
+            }
+            function playerPlay(){
+                return window.prompt();
+            }
+            for(i=0;i<5;i++){
+                const playerSelection = playerPlay();
+                const computerSelection = computerPlay();
+                console.log(playRound(playerSelection, computerSelection))
+            }
+            if (score>0){
+                console.log("You win!");
+            }
+            if (score<0){
+                console.log("You lose!");
+            }
+            if (score===0){
+                console.log("Draw");
+            }
         </script>
     </head>
 </html>
